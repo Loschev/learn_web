@@ -6,8 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # weather = weather_by_city('Saint_Peterburg,Russia')
-    weather = False
+    weather = weather_by_city('Saint_Peterburg,Russia')
     if weather:
         return f'Температура: {weather["temp_C"]}, ощущается как {weather["FeelsLikeC"]}'
     else:
