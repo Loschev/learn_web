@@ -9,16 +9,21 @@ def weather_by_city(city_name):
         'number_of_days': 1,
         'lang': 'ru'
     }
-    result = requests.get(weather_url, params=params)
-    weather = result.json()
-    if 'data' in weather:
-        if 'current_condition' in weather['data']:
-            try:
-                return weather['data']['current_condition'][0]
-            except(IndexError, TypeError):
-                return False
-        else:
-            return "Сервис погоды временно недоступен"
+    try:
+        result = requests.get(weather_url, params=params)
+        result.raise_for_status()
+        weather = result.json()
+        if 'data' in weather:
+            if 'current_condition' in weather['data']:
+                try:
+                    return weather['data']['current_condition'][0]
+                except(IndexError, TypeError):
+                    return False
+            else:
+                return "Сервис погоды временно недоступен"
+    except(requests.RequestException, ValueError):
+        print('Сетевая ошибка')
+        return False
     return False
 
 
