@@ -1,4 +1,6 @@
 env
 venv
 .idea
-/bdva.html
+/webapp/bdva.html
+__pycache__
+/webapp/config.py
