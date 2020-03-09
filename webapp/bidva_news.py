@@ -21,7 +21,7 @@ def get_bdva_news():
             city = news.find('a').text
             city = ' '.join(city.split())
             url = news.find('a')['href']
-            time = news.find('div', class_='fat-event-start').text
+            time = news.find('div', class_='fat-event-start')['data-time']
             time = ' '.join(time.split())
             place = news.find('span', class_='fat-event-location').text
             place = ' '.join(place.split())
